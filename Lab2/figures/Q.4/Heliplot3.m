@@ -23,8 +23,11 @@ plot(Data3.ans(1,:), Data3.ans(3,:),'c')
 hold on
 plot(Data4.ans(1,:), Data4.ans(3,:),'r')
 
+hold on
+plot(Data5.ans(1,:), Data5.ans(3,:),'g')
+
 title('Pitch');
-legend('Step=0.3','Test 1','Test 2','Test 3','Test 4');
+legend('Step=0.3','Test 1','Test 2','Test 3','Test 4','Test 5');
 hold off
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -49,8 +52,11 @@ plot(Data3.ans(1,:), Data3.ans(3,:),'c')
 
 hold on
 plot(Data4.ans(1,:), Data4.ans(3,:),'r')
+
+hold on
+plot(Data5.ans(1,:), Data5.ans(3,:),'g')
 xlim([14.9 16.6]);
 ylim([-0.2 0.2]);
 title('Elevation rate');
-legend('Step=0.1','Test 1','Test 2','Test 3','Test 4','Location','southeast');
+legend('Step=0.1','Test 1','Test 2','Test 3','Test 4','Test 5','Location','southeast');
 
