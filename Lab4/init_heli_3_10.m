@@ -11,6 +11,7 @@
 % Updated spring 2015, Mark Haring
 
 clear
+close
 %%%%%%%%%%% Calibration of the encoder and the hardware for the specific
 %%%%%%%%%%% helicopter
 Joystick_gain_x = 1;
@@ -89,15 +90,70 @@ B1 = [0 0;
     K2 0;
     0 0];
 C1 = eye(5);
+D1 = zeros(5,2);
+
 PORT = 7;
 
-theta = 20;
-gain = 1;
-pole1 = -1;
-pole2 = -(cosd(theta))+1j*sind(theta);
-pole3 = -(cosd(theta))-1j*sind(theta);
-pole4 = -(cosd(2*theta))+1j*sind(2*theta);
-pole5 = -(cosd(2*theta))-1j*sind(2*theta);
-p2 = [pole1, pole2, pole3, pole4, pole5]*gain;
-L = place(A1',C1',p2)';
 
+%%Lab4
+%Task1
+%Data = load('noiseMeasurement2.mat');
+Data = load('noiseMeasurement3.mat');
+Rd = cov(Data.ans(2:6,:)');
+
+% figure(1);
+% subplot(231);
+% plot(Data.ans(1,:),Data.ans(2,:))
+% subplot(232);
+% plot(Data.ans(1,:),Data.ans(3,:))
+% subplot(233);
+% plot(Data.ans(1,:),Data.ans(4,:))
+% subplot(234);
+% plot(Data.ans(1,:),Data.ans(5,:))
+% subplot(235);
+% plot(Data.ans(1,:),Data.ans(6,:))
+
+%Task2
+A4 = [0 1 0 0 0 0;
+    0 0 0 0 0 0;
+    0 0 0 1 0 0;
+    0 0 0 0 0 0;
+   0 0 0 0 0 1;
+    K3 0 0 0 0 0];
+B4 = [0 0;
+    0 K1;
+    0 0;
+    K2 0;
+    0 0;
+    0 0];
+C4 = [1 0 0 0 0 0;
+      0 1 0 0 0 0;
+      0 0 1 0 0 0;
+      0 0 0 1 0 0;
+      0 0 0 0 0 1];
+D4 = zeros(6,2);
+Ts = 0.002;
+[Ad,Bd] = c2d(A4,B4,Ts);
+Cd = C4;
+
+qd1 = 0.00001;
+qd2 = 0.00001;
+qd3 = 0.000001;
+qd4 = 0.0000001;
+qd5 = 0.00001;
+qd6 = 0.00001;
+
+Qd = [qd1 0 0 0 0 0;
+      0 qd2 0 0 0 0;
+      0 0 qd3 0 0 0;
+      0 0 0 qd4 0 0;
+      0 0 0 0 qd5 0;
+      0 0 0 0 0 qd6];
+x0 = [0;
+      0;
+     -0.46;
+      0;
+      0;
+      0];
+pvec = [(0.0001) (0.0001) (1.57) (0.0001) (0.0001) (0.0001)];
+P0 = diag(pvec); 

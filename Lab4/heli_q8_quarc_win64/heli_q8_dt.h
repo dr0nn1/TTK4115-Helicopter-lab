@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.86
+ * Model version              : 1.97
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Wed Oct 21 17:34:56 2020
+ * C source code generated on : Wed Nov 11 15:48:25 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -80,7 +80,7 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&heli_q8_B.Add), 0, 0, 50 },
+  { (char_T *)(&heli_q8_B.Add), 0, 0, 200 },
 
   { (char_T *)(&heli_q8_B.StreamCall1_o2), 3, 0, 1 },
 
@@ -89,7 +89,7 @@ static DataTypeTransition rtBTransitions[] = {
   { (char_T *)(&heli_q8_B.IfActionSubsystem.In1), 0, 0, 1 }
   ,
 
-  { (char_T *)(&heli_q8_DW.HILInitialize_AIMinimums[0]), 0, 0, 78 },
+  { (char_T *)(&heli_q8_DW.UnitDelay_DSTATE[0]), 0, 0, 120 },
 
   { (char_T *)(&heli_q8_DW.StreamCall1_Stream), 14, 0, 1 },
 
@@ -132,7 +132,7 @@ static DataTypeTransitionTable rtBTransTable = {
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
-  { (char_T *)(&heli_q8_P.A1[0]), 0, 0, 119 },
+  { (char_T *)(&heli_q8_P.Ad[0]), 0, 0, 215 },
 
   { (char_T *)(&heli_q8_P.HILReadEncoderTimebase_clock), 6, 0, 10 },
 
@@ -140,7 +140,7 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&heli_q8_P.HILInitialize_active), 8, 0, 35 },
 
-  { (char_T *)(&heli_q8_P.ElevationCounttorad_Gain), 0, 0, 67 },
+  { (char_T *)(&heli_q8_P.Constant2_Value), 0, 0, 67 },
 
   { (char_T *)(&heli_q8_P.StreamCall1_SendBufferSize), 6, 0, 2 },
 
@@ -148,7 +148,7 @@ static DataTypeTransition rtPTransitions[] = {
 
   { (char_T *)(&heli_q8_P.GameController_BufferSize), 5, 0, 1 },
 
-  { (char_T *)(&heli_q8_P.StringConstant_Value[0]), 3, 0, 258 },
+  { (char_T *)(&heli_q8_P.StringConstant_Value[0]), 3, 0, 259 },
 
   { (char_T *)(&heli_q8_P.HILReadEncoderTimebase_Active), 8, 0, 5 }
 };
