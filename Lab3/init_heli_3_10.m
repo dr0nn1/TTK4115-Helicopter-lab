@@ -11,6 +11,7 @@
 % Updated spring 2015, Mark Haring
 
 clear
+close
 %%%%%%%%%%% Calibration of the encoder and the hardware for the specific
 %%%%%%%%%%% helicopter
 Joystick_gain_x = 1;
@@ -92,12 +93,13 @@ C1 = eye(5);
 PORT = 7;
 
 theta = 20;
-gain = 1;
+gain = 1.2;
 pole1 = -1;
 pole2 = -(cosd(theta))+1j*sind(theta);
 pole3 = -(cosd(theta))-1j*sind(theta);
 pole4 = -(cosd(2*theta))+1j*sind(2*theta);
 pole5 = -(cosd(2*theta))-1j*sind(2*theta);
 p2 = [pole1, pole2, pole3, pole4, pole5]*gain;
+
 L = place(A1',C1',p2)';
 

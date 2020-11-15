@@ -841,7 +841,7 @@
   ;%*******************
       
     nTotData      = 0; %add to this count as we go
-    nTotSects     = 15;
+    nTotSects     = 14;
     sectIdxOffset = 4;
     
     ;%
@@ -971,8 +971,8 @@
       dworkMap.sections(5) = section;
       clear section
       
-      section.nData     = 18;
-      section.data(18)  = dumData; %prealloc
+      section.nData     = 17;
+      section.data(17)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.Elevation_PWORK.LoggedData
 	  section.data(1).logicalSrcIdx = 18;
@@ -1042,10 +1042,6 @@
 	  section.data(17).logicalSrcIdx = 34;
 	  section.data(17).dtTransOffset = 24;
 	
-	  ;% heli_q8_DW.ToFile_PWORK.FilePtr
-	  section.data(18).logicalSrcIdx = 35;
-	  section.data(18).dtTransOffset = 25;
-	
       nTotData = nTotData + section.nData;
       dworkMap.sections(6) = section;
       clear section
@@ -1054,31 +1050,31 @@
       section.data(7)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILInitialize_ClockModes
-	  section.data(1).logicalSrcIdx = 36;
+	  section.data(1).logicalSrcIdx = 35;
 	  section.data(1).dtTransOffset = 0;
 	
 	  ;% heli_q8_DW.HILInitialize_QuadratureModes
-	  section.data(2).logicalSrcIdx = 37;
+	  section.data(2).logicalSrcIdx = 36;
 	  section.data(2).dtTransOffset = 3;
 	
 	  ;% heli_q8_DW.HILInitialize_InitialEICounts
-	  section.data(3).logicalSrcIdx = 38;
+	  section.data(3).logicalSrcIdx = 37;
 	  section.data(3).dtTransOffset = 11;
 	
 	  ;% heli_q8_DW.HILInitialize_POModeValues
-	  section.data(4).logicalSrcIdx = 39;
+	  section.data(4).logicalSrcIdx = 38;
 	  section.data(4).dtTransOffset = 19;
 	
 	  ;% heli_q8_DW.HILInitialize_POAlignValues
-	  section.data(5).logicalSrcIdx = 40;
+	  section.data(5).logicalSrcIdx = 39;
 	  section.data(5).dtTransOffset = 27;
 	
 	  ;% heli_q8_DW.HILInitialize_POPolarityVals
-	  section.data(6).logicalSrcIdx = 41;
+	  section.data(6).logicalSrcIdx = 40;
 	  section.data(6).dtTransOffset = 35;
 	
 	  ;% heli_q8_DW.HILReadEncoderTimebase_Buffer
-	  section.data(7).logicalSrcIdx = 42;
+	  section.data(7).logicalSrcIdx = 41;
 	  section.data(7).dtTransOffset = 43;
 	
       nTotData = nTotData + section.nData;
@@ -1089,46 +1085,46 @@
       section.data(1)  = dumData; %prealloc
       
 	  ;% heli_q8_DW.HILInitialize_POSortedChans
-	  section.data(1).logicalSrcIdx = 43;
+	  section.data(1).logicalSrcIdx = 42;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(8) = section;
       clear section
       
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
+      section.nData     = 5;
+      section.data(5)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.ToFile_IWORK.Count
-	  section.data(1).logicalSrcIdx = 44;
+	  ;% heli_q8_DW.If1_ActiveSubsystem
+	  section.data(1).logicalSrcIdx = 43;
 	  section.data(1).dtTransOffset = 0;
+	
+	  ;% heli_q8_DW.If_ActiveSubsystem
+	  section.data(2).logicalSrcIdx = 44;
+	  section.data(2).dtTransOffset = 1;
+	
+	  ;% heli_q8_DW.If1_ActiveSubsystem_f
+	  section.data(3).logicalSrcIdx = 45;
+	  section.data(3).dtTransOffset = 2;
+	
+	  ;% heli_q8_DW.IfActionSubsystem1_SubsysRanBC
+	  section.data(4).logicalSrcIdx = 46;
+	  section.data(4).dtTransOffset = 3;
+	
+	  ;% heli_q8_DW.IfActionSubsystem2_SubsysRanBC
+	  section.data(5).logicalSrcIdx = 47;
+	  section.data(5).dtTransOffset = 4;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(9) = section;
       clear section
       
-      section.nData     = 5;
-      section.data(5)  = dumData; %prealloc
+      section.nData     = 1;
+      section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.If1_ActiveSubsystem
-	  section.data(1).logicalSrcIdx = 45;
+	  ;% heli_q8_DW.StreamCall1_State
+	  section.data(1).logicalSrcIdx = 48;
 	  section.data(1).dtTransOffset = 0;
-	
-	  ;% heli_q8_DW.If_ActiveSubsystem
-	  section.data(2).logicalSrcIdx = 46;
-	  section.data(2).dtTransOffset = 1;
-	
-	  ;% heli_q8_DW.If1_ActiveSubsystem_f
-	  section.data(3).logicalSrcIdx = 47;
-	  section.data(3).dtTransOffset = 2;
-	
-	  ;% heli_q8_DW.IfActionSubsystem1_SubsysRanBC
-	  section.data(4).logicalSrcIdx = 48;
-	  section.data(4).dtTransOffset = 3;
-	
-	  ;% heli_q8_DW.IfActionSubsystem2_SubsysRanBC
-	  section.data(5).logicalSrcIdx = 49;
-	  section.data(5).dtTransOffset = 4;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(10) = section;
@@ -1137,8 +1133,8 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.StreamCall1_State
-	  section.data(1).logicalSrcIdx = 50;
+	  ;% heli_q8_DW.IfActionSubsystem2.IfActionSubsystem_SubsysRanBC
+	  section.data(1).logicalSrcIdx = 49;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -1148,8 +1144,8 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.IfActionSubsystem2.IfActionSubsystem_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 51;
+	  ;% heli_q8_DW.IfActionSubsystem3.IfActionSubsystem1_SubsysRanBC
+	  section.data(1).logicalSrcIdx = 50;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -1159,8 +1155,8 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.IfActionSubsystem3.IfActionSubsystem1_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 52;
+	  ;% heli_q8_DW.IfActionSubsystem.IfActionSubsystem_SubsysRanBC
+	  section.data(1).logicalSrcIdx = 51;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
@@ -1170,23 +1166,12 @@
       section.nData     = 1;
       section.data(1)  = dumData; %prealloc
       
-	  ;% heli_q8_DW.IfActionSubsystem.IfActionSubsystem_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 53;
+	  ;% heli_q8_DW.IfActionSubsystem1.IfActionSubsystem1_SubsysRanBC
+	  section.data(1).logicalSrcIdx = 52;
 	  section.data(1).dtTransOffset = 0;
 	
       nTotData = nTotData + section.nData;
       dworkMap.sections(14) = section;
-      clear section
-      
-      section.nData     = 1;
-      section.data(1)  = dumData; %prealloc
-      
-	  ;% heli_q8_DW.IfActionSubsystem1.IfActionSubsystem1_SubsysRanBC
-	  section.data(1).logicalSrcIdx = 54;
-	  section.data(1).dtTransOffset = 0;
-	
-      nTotData = nTotData + section.nData;
-      dworkMap.sections(15) = section;
       clear section
       
     
@@ -1215,8 +1200,8 @@
   ;%
 
 
-  targMap.checksum0 = 243264895;
-  targMap.checksum1 = 3906636537;
-  targMap.checksum2 = 3627631682;
-  targMap.checksum3 = 507171167;
+  targMap.checksum0 = 355838556;
+  targMap.checksum1 = 1325695854;
+  targMap.checksum2 = 3443181182;
+  targMap.checksum3 = 223872239;
 

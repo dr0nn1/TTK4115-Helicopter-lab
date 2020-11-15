@@ -36,4 +36,4 @@ hold on
 plot(Data7.ans(1,:), Data7.ans(3,:),'b')
 
 
-legend('Step=0.6','Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7');
+legend({'Step=0.6','Test 1','Test 2','Test 3','Test 4','Test 5','Test 6','Test 7'},'FontSize',25);

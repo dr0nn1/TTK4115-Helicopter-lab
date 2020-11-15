@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.97
+ * Model version              : 1.98
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Wed Nov 11 15:48:25 2020
+ * C source code generated on : Sat Nov 14 14:56:19 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,13 +20,10 @@
 
 #ifndef RTW_HEADER_heli_q8_h_
 #define RTW_HEADER_heli_q8_h_
-#include <stddef.h>
 #include <math.h>
 #include <string.h>
 #ifndef heli_q8_COMMON_INCLUDES_
 # define heli_q8_COMMON_INCLUDES_
-#include <stdio.h>
-#include <string.h>
 #include "rtwtypes.h"
 #include "zero_crossing_types.h"
 #include "simstruc.h"
@@ -973,10 +970,6 @@ typedef struct {
     void *LoggedData;
   } YScope_PWORK;                      /* '<S7>/Y: Scope' */
 
-  struct {
-    void *FilePtr;
-  } ToFile_PWORK;                      /* '<Root>/To File' */
-
   int32_T HILInitialize_ClockModes[3]; /* '<Root>/HIL Initialize' */
   int32_T HILInitialize_QuadratureModes[8];/* '<Root>/HIL Initialize' */
   int32_T HILInitialize_InitialEICounts[8];/* '<Root>/HIL Initialize' */
@@ -985,11 +978,6 @@ typedef struct {
   int32_T HILInitialize_POPolarityVals[8];/* '<Root>/HIL Initialize' */
   int32_T HILReadEncoderTimebase_Buffer[3];/* '<S3>/HIL Read Encoder Timebase' */
   uint32_T HILInitialize_POSortedChans[8];/* '<Root>/HIL Initialize' */
-  struct {
-    int_T Count;
-    int_T Decimation;
-  } ToFile_IWORK;                      /* '<Root>/To File' */
-
   int8_T If1_ActiveSubsystem;          /* '<S9>/If1' */
   int8_T If_ActiveSubsystem;           /* '<S9>/If' */
   int8_T If1_ActiveSubsystem_f;        /* '<Root>/If1' */

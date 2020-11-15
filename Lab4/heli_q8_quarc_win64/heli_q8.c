@@ -7,9 +7,9 @@
  *
  * Code generation for model "heli_q8".
  *
- * Model version              : 1.97
+ * Model version              : 1.98
  * Simulink Coder version : 8.9 (R2015b) 13-Aug-2015
- * C source code generated on : Wed Nov 11 15:48:25 2020
+ * C source code generated on : Sat Nov 14 14:56:19 2020
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -40,34 +40,6 @@ RT_MODEL_heli_q8_T *const heli_q8_M = &heli_q8_M_;
 /* Forward declaration for local functions */
 static void heli_q8_mrdivide(real_T A[30], const real_T B[25]);
 static void rate_monotonic_scheduler(void);
-
-/*
- * Writes out MAT-file header.  Returns success or failure.
- * Returns:
- *      0 - success
- *      1 - failure
- */
-int_T rt_WriteMat4FileHeader(FILE *fp, int32_T m, int32_T n, const char *name)
-{
-  typedef enum { ELITTLE_ENDIAN, EBIG_ENDIAN } ByteOrder;
-
-  int16_T one = 1;
-  ByteOrder byteOrder = (*((int8_T *)&one)==1) ? ELITTLE_ENDIAN : EBIG_ENDIAN;
-  int32_T type = (byteOrder == ELITTLE_ENDIAN) ? 0: 1000;
-  int32_T imagf = 0;
-  int32_T name_len = (int32_T)strlen(name) + 1;
-  if ((fwrite(&type, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&m, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&n, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&imagf, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(&name_len, sizeof(int32_T), 1, fp) == 0) ||
-      (fwrite(name, sizeof(char), name_len, fp) == 0)) {
-    return(1);
-  } else {
-    return(0);
-  }
-}                                      /* end rt_WriteMat4FileHeader */
-
 time_T rt_SimUpdateDiscreteEvents(
   int_T rtmNumSampTimes, void *rtmTimingData, int_T *rtmSampleHitPtr, int_T
   *rtmPerTaskSampleHits )
@@ -1112,35 +1084,6 @@ void heli_q8_output0(void)             /* Sample time: [0.0s, 0.0s] */
 
     /* Sum: '<Root>/Sum2' */
     heli_q8_B.Sum2 = heli_q8_B.x_estimated[0] - heli_q8_B.Joystick_gain_x;
-
-    /* ToFile: '<Root>/To File' */
-    if (rtmIsMajorTimeStep(heli_q8_M)) {
-      {
-        if (!(++heli_q8_DW.ToFile_IWORK.Decimation % 1) &&
-            (heli_q8_DW.ToFile_IWORK.Count*2)+1 < 100000000 ) {
-          FILE *fp = (FILE *) heli_q8_DW.ToFile_PWORK.FilePtr;
-          if (fp != (NULL)) {
-            real_T u[2];
-            heli_q8_DW.ToFile_IWORK.Decimation = 0;
-            u[0] = heli_q8_M->Timing.t[1];
-            u[1] = 0.0;
-            if (fwrite(u, sizeof(real_T), 2, fp) != 2) {
-              rtmSetErrorStatus(heli_q8_M,
-                                "Error writing to MAT-file KalmanPitchZero.mat");
-              return;
-            }
-
-            if (((++heli_q8_DW.ToFile_IWORK.Count)*2)+1 >= 100000000) {
-              (void)fprintf(stdout,
-                            "*** The ToFile block will stop logging data before\n"
-                            "    the simulation has ended, because it has reached\n"
-                            "    the maximum number of elements (100000000)\n"
-                            "    allowed in MAT-file KalmanPitchZero.mat.\n");
-            }
-          }
-        }
-      }
-    }
   }
 }
 
@@ -1753,27 +1696,6 @@ void heli_q8_initialize(void)
   /* Start for Constant: '<S8>/Constant2' */
   memcpy(&heli_q8_B.Constant2[0], &heli_q8_P.Qd[0], 36U * sizeof(real_T));
 
-  /* Start for ToFile: '<Root>/To File' */
-  {
-    FILE *fp = (NULL);
-    char fileName[509] = "KalmanPitchZero.mat";
-    if ((fp = fopen(fileName, "wb")) == (NULL)) {
-      rtmSetErrorStatus(heli_q8_M,
-                        "Error creating .mat file KalmanPitchZero.mat");
-      return;
-    }
-
-    if (rt_WriteMat4FileHeader(fp,2,0,"ans")) {
-      rtmSetErrorStatus(heli_q8_M,
-                        "Error writing mat file header to file KalmanPitchZero.mat");
-      return;
-    }
-
-    heli_q8_DW.ToFile_IWORK.Count = 0;
-    heli_q8_DW.ToFile_IWORK.Decimation = -1;
-    heli_q8_DW.ToFile_PWORK.FilePtr = fp;
-  }
-
   {
     int32_T i;
 
@@ -1928,38 +1850,6 @@ void heli_q8_terminate(void)
       heli_q8_DW.GameController_Controller = NULL;
     }
   }
-
-  /* Terminate for ToFile: '<Root>/To File' */
-  {
-    FILE *fp = (FILE *) heli_q8_DW.ToFile_PWORK.FilePtr;
-    if (fp != (NULL)) {
-      char fileName[509] = "KalmanPitchZero.mat";
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file KalmanPitchZero.mat");
-        return;
-      }
-
-      if ((fp = fopen(fileName, "r+b")) == (NULL)) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error reopening MAT-file KalmanPitchZero.mat");
-        return;
-      }
-
-      if (rt_WriteMat4FileHeader(fp, 2, heli_q8_DW.ToFile_IWORK.Count, "ans")) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error writing header for ans to MAT-file KalmanPitchZero.mat");
-      }
-
-      if (fclose(fp) == EOF) {
-        rtmSetErrorStatus(heli_q8_M,
-                          "Error closing MAT-file KalmanPitchZero.mat");
-        return;
-      }
-
-      heli_q8_DW.ToFile_PWORK.FilePtr = (NULL);
-    }
-  }
 }
 
 /*========================================================================*
@@ -2101,10 +1991,10 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Timing.stepSize2 = 0.01;
 
   /* External mode info */
-  heli_q8_M->Sizes.checksums[0] = (243264895U);
-  heli_q8_M->Sizes.checksums[1] = (3906636537U);
-  heli_q8_M->Sizes.checksums[2] = (3627631682U);
-  heli_q8_M->Sizes.checksums[3] = (507171167U);
+  heli_q8_M->Sizes.checksums[0] = (355838556U);
+  heli_q8_M->Sizes.checksums[1] = (1325695854U);
+  heli_q8_M->Sizes.checksums[2] = (3443181182U);
+  heli_q8_M->Sizes.checksums[3] = (223872239U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -2326,7 +2216,7 @@ RT_MODEL_heli_q8_T *heli_q8(void)
   heli_q8_M->Sizes.numU = (0);         /* Number of model inputs */
   heli_q8_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   heli_q8_M->Sizes.numSampTimes = (3); /* Number of sample times */
-  heli_q8_M->Sizes.numBlocks = (112);  /* Number of blocks */
+  heli_q8_M->Sizes.numBlocks = (111);  /* Number of blocks */
   heli_q8_M->Sizes.numBlockIO = (33);  /* Number of block outputs */
   heli_q8_M->Sizes.numBlockPrms = (634);/* Sum of parameter "widths" */
   return heli_q8_M;
